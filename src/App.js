@@ -2,8 +2,13 @@ import React, { Component } from "react";
 import store from "./store";
 import user from "./images/user.png";
 import "./App.css";
+import { displayCardAction } from "./middleware";
 
 class App extends Component {
+  componentDidMount() {
+    console.log("component did mount");
+    store.dispatch(displayCardAction());
+  }
   render() {
     const {
       name = ". . .",
@@ -11,7 +16,7 @@ class App extends Component {
       likes = " . . .",
       location = " . . .",
       profilePic,
-      isLoading = true
+      isLoading = true,
     } = store.getState();
     return (
       <div className={`${!isLoading ? "App" : "App App--loading"}`}>
